@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gigantic Wit by Abdul Rahman</title>
+    <style>
+        /* --- CSS STYLING --- */
+        :root {
+            --primary: #2563eb;
+            --bg: #f1f5f9;
+            --white: #ffffff;
+            --text-main: #1e293b;
+            --border: #cbd5e1;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* 1. Header & Nav */
+        header {
+            background: var(--white);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 2. Main Layout (Sidebar + Grid) */
+        .app-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        aside {
+            width: 240px;
+            background: var(--white);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+        }
+
+        .filter-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        .filter-btn:hover { background: #e2e8f0; }
+        .filter-btn.active { background: var(--primary); color: white; }
+
+        main {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .card-preview { height: 120px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .card-body { padding: 10px; }
+
+        /* 3. THE EDITOR (Overlay) */
+        #editor-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg);
+            z-index: 100;
+            flex-direction: column;
+        }
+
+        /* Toolbar Area */
+        .editor-header {
+            background: var(--white);
+            padding: 10px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toolbar-group {
+            display: flex;
+            gap: 5px;
+            margin-right: 15px;
+            padding-right: 15px;
+            border-right: 1px solid var(--border);
+        }
+        
+        .tool-btn {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .tool-btn:hover { background: #e2e8f0; }
+
+        /* Real-Time Collaboration Avatars */
+        .collaborators {
+            display: flex;
+            align-items: center;
+            gap: -5px;
+        }
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: #3b82f6;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-left: -8px;
+        }
+
+        /* Workspace with Version History Sidebar */
+        .workspace {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .paper-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .paper {
+            width: 800px;
+            min-height: 1000px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 50px;
+            outline: none;
+        }
+
+        /* Version History Sidebar (Hidden by default) */
+        .history-panel {
+            width: 0;
+            background: var(--white);
+            border-left: 1px solid var(--border);
+            transition: width 0.3s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .history-panel.open { width: 300px; }
+        
+        .history-item {
+            padding: 15px;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+        }
+        .history-item:hover { background: #f8fafc; }
+        .timestamp { font-size: 0.8rem; color: #64748b; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h3>Gigantic Wit <span style="font-weight:normal; font-size:0.9rem;">by Abdul Rahman</span></h3>
+    </header>
+
+    <div class="app-container">
+        <aside>
+            <button class="filter-btn active" onclick="filter('all')">All Templates</button>
+            <button class="filter-btn" onclick="filter('business')">Business</button>
+            <button class="filter-btn" onclick="filter('creative')">Creative</button>
+        </aside>
+        <main>
+            <div id="grid" class="grid"></div>
+        </main>
+    </div>
+
+    <div id="editor-overlay">
+        
+        <div class="editor-header">
+            <div style="display:flex; align-items:center;">
+                <button onclick="closeEditor()" style="margin-right:15px; border:none; background:none; cursor:pointer;">← Back</button>
+                <span id="doc-title" style="font-weight:bold;">Untitled</span>
+                <span style="font-size:0.8rem; color:green; margin-left:10px;"> ● Saved</span>
+            </div>
+
+            <div class="collaborators">
+                <span style="font-size:0.8rem; margin-right:10px; color:#64748b;">3 Viewing</span>
+                <div class="avatar" style="background:#ef4444;" title="Alice">A</div>
+                <div class="avatar" style="background:#10b981;" title="Bob">B</div>
+                <div class="avatar" style="background:#f59e0b;" title="You">Y</div>
+            </div>
+        </div>
+
+        <div class="editor-header" style="background:#f8fafc; padding: 5px 20px;">
+            <div class="toolbar-group">
+                <button class="tool-btn" onclick="formatDoc('bold')"><b>B</b></button>
+                <button class="tool-btn" onclick="formatDoc('italic')"><i>I</i></button>
+                <button class="tool-btn" onclick="formatDoc('underline')"><u>U</u></button>
+            </div>
+
+            <div class="toolbar-group">
+                <button class="tool-btn" onclick="insertImage()">🖼️ Image</button>
+                <button class="tool-btn" onclick="insertChart()">📊 Data Chart</button>
+            </div>
+
+            <div>
+                <button class="tool-btn" onclick="toggleHistory()">🕒 History</button>
+            </div>
+        </div>
+
+        <div class="workspace">
+            <div class="paper-container">
+                <div id="paper" class="paper" contenteditable="true" oninput="autoSave()">
+                    </div>
+            </div>
+
+            <div id="history-panel" class="history-panel">
+                <div style="padding:15px; background:#f1f5f9; font-weight:bold;">Version History</div>
+                <div id="history-list">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* --- JAVASCRIPT LOGIC --- */
+
+        // DATA
+        const templates = [
+            { id: 1, title: "Annual Report", category: "business", icon: "📈", content: "<h1>Annual Report 2024</h1><p>Start typing...</p>" },
+            { id: 2, title: "Creative Brief", category: "creative", icon: "🎨", content: "<h1>Creative Brief</h1><p><strong>Client:</strong></p>" },
+            { id: 3, title: "Invoice", category: "business", icon: "💰", content: "<h1>INVOICE #001</h1><p>Bill to:</p>" }
+        ];
+
+        // 1. RENDER GRID
+        const grid = document.getElementById('grid');
+        function renderGrid(data) {
+            grid.innerHTML = data.map(t => `
+                <div class="card" onclick="openEditor(${t.id})">
+                    <div class="card-preview">${t.icon}</div>
+                    <div class="card-body"><b>${t.title}</b><br><small>${t.category}</small></div>
+                </div>
+            `).join('');
+        }
+        renderGrid(templates);
+
+        // 2. EDITOR LOGIC
+        function openEditor(id) {
+            const tmpl = templates.find(t => t.id === id);
+            document.getElementById('doc-title').innerText = tmpl.title;
+            document.getElementById('paper').innerHTML = tmpl.content;
+            document.getElementById('editor-overlay').style.display = 'flex';
+            saveVersion("Initial Template Load"); // Save first version
+        }
+
+        function closeEditor() {
+            document.getElementById('editor-overlay').style.display = 'none';
+        }
+
+        // 3. CORE EDITING (Using execCommand for demo purposes)
+        function formatDoc(cmd) {
+            document.execCommand(cmd, false, null);
+        }
+
+        // 4. MEDIA INTEGRATION
+        function insertImage() {
+            const url = prompt("Enter Image URL:", "https://via.placeholder.com/150");
+            if(url) document.execCommand('insertImage', false, url);
+        }
+
+        function insertChart() {
+            // Inserts a simulated chart image
+            const chartHTML = `<br><div style="border:1px solid #ccc; padding:10px; text-align:center; background:#f9f9f9;">📊 [Interactive Sales Chart Placeholder]</div><br>`;
+            document.execCommand('insertHTML', false, chartHTML);
+        }
+
+        // 5. VERSION HISTORY SYSTEM
+        let versions = [];
+        
+        function autoSave() {
+            // In a real app, debounce this so it doesn't save every keystroke
+            // Here we just update the "current state"
+        }
+
+        function saveVersion(label) {
+            const content = document.getElementById('paper').innerHTML;
+            const time = new Date().toLocaleTimeString();
+            versions.unshift({ time, label, content }); // Add to top of list
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const list = document.getElementById('history-list');
+            list.innerHTML = versions.map((v, index) => `
+                <div class="history-item" onclick="restoreVersion(${index})">
+                    <div>${v.label || 'Auto-Save'}</div>
+                    <div class="timestamp">${v.time}</div>
+                </div>
+            `).join('');
+        }
+
+        function toggleHistory() {
+            const panel = document.getElementById('history-panel');
+            panel.classList.toggle('open');
+            // Simulate a new save when opening history
+            saveVersion("Current Draft");
+        }
+
+        function restoreVersion(index) {
+            if(confirm("Restore this version? Unsaved changes will be lost.")) {
+                document.getElementById('paper').innerHTML = versions[index].content;
+            }
+        }
+
+    </script>
+</body>
+  </html>
+
