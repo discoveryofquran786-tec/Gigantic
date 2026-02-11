@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gigantic Wit | Professional Intelligence Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gigantic: {
+                            50: '#f0f4ff',
+                            100: '#e0eaff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono&display=swap');
+        
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.15) 0px, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-gigantic-950 text-slate-100 mesh-gradient min-h-screen">
+
+    <!-- Header -->
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 glass-panel">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <div class="p-2 bg-gigantic-600 rounded-xl group-hover:rotate-12 transition-transform shadow-lg shadow-gigantic-600/30">
+                    <i class="fa-solid fa-brain text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-extrabold tracking-tighter text-white">GIGANTIC<span class="text-gigantic-500">WIT</span></span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="#features" class="hover:text-white transition-colors">Features</a>
+                <a href="#editor" class="hover:text-white transition-colors">Editor</a>
+                <a href="#collaboration" class="hover:text-white transition-colors">Collaboration</a>
+                <a href="#pricing" class="hover:text-white transition-colors">Enterprise</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button class="hidden sm:block text-sm font-semibold text-slate-300 hover:text-white">Sign In</button>
+                <button class="bg-white text-gigantic-950 px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 active:scale-95 transition-all">Get Started</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="pt-40 pb-20 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto relative">
+            <!-- Background Glows -->
+            <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gigantic-600/20 blur-[120px] rounded-full"></div>
+            
+            <div class="relative z-10 text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gigantic-500/30 bg-gigantic-500/10 text-gigantic-400 text-xs font-bold uppercase tracking-widest mb-6 animate-pulse-slow">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gigantic-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-gigantic-500"></span>
+                    </span>
+                    The Next Evolution of Documents
+                </div>
+                
+                <h1 class="text-6xl md:text-8xl font-black text-white leading-[1.1] tracking-tight mb-8">
+                    Your ideas, <br>
+                    <span class="gradient-text">supercharged.</span>
+                </h1>
+                
+                <p class="max-w-3xl mx-auto text-xl text-slate-400 leading-relaxed mb-12">
+                    Gigantic Wit is more than a word processor. It’s a full-fledged productivity suite designed for technical precision, real-time collaboration, and AI-powered efficiency.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="w-full sm:w-auto px-10 py-5 bg-gigantic-600 hover:bg-gigantic-500 text-white rounded-2xl font-bold text-lg shadow-2xl shadow-gigantic-600/40 transition-all flex items-center justify-center gap-3">
+                        Launch Application <i class="fa-solid fa-bolt-lightning"></i>
+                    </button>
+                    <button class="w-full sm:w-auto px-10 py-5 bg-slate-800/50 hover:bg-slate-800 text-white rounded-2xl font-bold text-lg border border-white/10 transition-all">
+                        View Demo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Mockup -->
+            <div class="mt-20 relative animate-float">
+                <div class="glass-panel p-2 rounded-3xl border border-white/10 shadow-2xl">
+                    <div class="bg-gigantic-950 rounded-2xl overflow-hidden aspect-[16/10] flex">
+                        <!-- Sidebar -->
+                        <div class="w-16 md:w-60 border-r border-white/5 bg-slate-900/50 hidden sm:flex flex-col p-4">
+                            <div class="space-y-4">
+                                <div class="h-8 w-full bg-white/5 rounded-lg"></div>
+                                <div class="h-8 w-3/4 bg-white/5 rounded-lg"></div>
+                                <div class="h-8 w-full bg-white/5 rounded-lg"></div>
+                                <div class="pt-8 space-y-2">
+                                    <div class="h-4 w-1/2 bg-white/5 rounded"></div>
+                                    <div class="h-10 w-full bg-gigantic-500/10 border border-gigantic-500/30 rounded-lg"></div>
+                                    <div class="h-10 w-full bg-white/5 rounded-lg"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Editor Area -->
+                        <div class="flex-1 flex flex-col">
+                            <div class="h-14 border-b border-white/5 flex items-center px-6 justify-between bg-slate-900/30">
+                                <div class="flex items-center gap-4 text-slate-400">
+                                    <i class="fa-solid fa-bold hover:text-white cursor-pointer transition-colors"></i>
+                                    <i class="fa-solid fa-italic hover:text-white cursor-pointer transition-colors"></i>
+                                    <i class="fa-solid fa-link hover:text-white cursor-pointer transition-colors"></i>
+                                    <div class="w-px h-4 bg-white/10"></div>
+                                    <span class="text-xs uppercase font-bold tracking-widest text-gigantic-400">Collaborating: 3 users</span>
+                                </div>
+                                <div class="flex -space-x-3">
+                                    <div class="w-8 h-8 rounded-full border-2 border-gigantic-950 bg-blue-500"></div>
+                                    <div class="w-8 h-8 rounded-full border-2 border-gigantic-950 bg-purple-500"></div>
+                                    <div class="w-8 h-8 rounded-full border-2 border-gigantic-950 bg-pink-500"></div>
+                                </div>
+                            </div>
+                            <div class="p-10 text-left">
+                                <div class="h-10 w-2/3 bg-white/10 rounded mb-8"></div>
+                                <div class="space-y-4">
+                                    <div class="h-4 w-full bg-white/5 rounded"></div>
+                                    <div class="h-4 w-full bg-white/5 rounded"></div>
+                                    <div class="h-4 w-4/5 bg-white/5 rounded"></div>
+                                    <div class="h-32 w-full bg-gigantic-500/5 border border-gigantic-500/20 rounded-xl mt-10 p-6 flex flex-col justify-center">
+                                        <div class="mono text-gigantic-400 text-sm mb-2">\[ \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi} \]</div>
+                                        <div class="text-xs text-slate-500 uppercase">LaTeX Rendered in Real-time</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Core Features -->
+    <section id="features" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Column 1 -->
+                <div class="lg:col-span-1">
+                    <h2 class="text-4xl font-extrabold text-white mb-6">Designed for the <span class="text-gigantic-500">Modern Pro.</span></h2>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        We've spent thousands of hours perfecting the writing experience, ensuring that whether you're coding, calculating, or storytelling, the interface disappears.
+                    </p>
+                    <button class="flex items-center gap-2 text-white font-bold hover:gap-4 transition-all">
+                        Explore all features <i class="fa-solid fa-arrow-right text-gigantic-500"></i>
+                    </button>
+                </div>
+
+                <!-- Column 2 & 3 -->
+                <div class="lg:col-span-2 grid md:grid-cols-2 gap-6">
+                    <div class="glass-panel p-8 rounded-3xl hover:border-gigantic-500/50 transition-all group">
+                        <div class="w-12 h-12 bg-gigantic-500/20 rounded-2xl flex items-center justify-center text-gigantic-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">AI Context Assistance</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Proactive rewriting and tone adjustment that understands your intent before you finish your sentence.</p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-3xl hover:border-gigantic-500/50 transition-all group">
+                        <div class="w-12 h-12 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-layer-group text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Infinite Version History</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">A permanent time-machine for your work. Roll back hours, days, or months with granular restoration.</p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-3xl hover:border-gigantic-500/50 transition-all group">
+                        <div class="w-12 h-12 bg-pink-500/20 rounded-2xl flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-cloud-arrow-up text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Instant Cloud Sync</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">State-of-the-art conflict resolution allows 100+ users to edit the same paragraph simultaneously.</p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-3xl hover:border-gigantic-500/50 transition-all group">
+                        <div class="w-12 h-12 bg-orange-500/20 rounded-2xl flex items-center justify-center text-orange-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-microchip text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Technical Data Links</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Embed live spreadsheets and LaTeX formulas that remain responsive across all export formats.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive: Intelligence -->
+    <section id="intelligence" class="py-24 px-6 bg-gigantic-900/40 relative border-y border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
+            <div class="flex-1">
+                <div class="text-gigantic-500 font-bold mb-4 flex items-center gap-2">
+                    <div class="w-8 h-px bg-gigantic-500"></div> SMARTER WRITING
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8">It doesn't just check grammar. It thinks.</h2>
+                <div class="space-y-8">
+                    <div class="flex gap-4">
+                        <div class="text-gigantic-500"><i class="fa-solid fa-brain"></i></div>
+                        <div>
+                            <h4 class="text-lg font-bold text-white">Tone Transformation</h4>
+                            <p class="text-slate-400 text-sm">Shift your memo from "Casual" to "Boardroom Ready" with one toggle.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="text-gigantic-500"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                        <div>
+                            <h4 class="text-lg font-bold text-white">Plagiarism Guard</h4>
+                            <p class="text-slate-400 text-sm">Automated web-scanning ensures your professional originality is never in doubt.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="text-gigantic-500"><i class="fa-solid fa-file-export"></i></div>
+                        <div>
+                            <h4 class="text-lg font-bold text-white">Multi-Format Export</h4>
+                            <p class="text-slate-400 text-sm">Seamless conversion to .docx, .pdf, .epub, and custom HTML templates.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex-1 w-full">
+                <div class="glass-panel rounded-3xl overflow-hidden shadow-2xl">
+                    <div class="bg-white/5 p-4 flex items-center justify-between border-b border-white/10">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">AI Editor Playground</span>
+                        <div class="flex gap-1.5">
+                            <div class="w-2 h-2 rounded-full bg-slate-700"></div>
+                            <div class="w-2 h-2 rounded-full bg-slate-700"></div>
+                            <div class="w-2 h-2 rounded-full bg-slate-700"></div>
+                        </div>
+                    </div>
+                    <div class="p-8 space-y-6">
+                        <div class="p-4 bg-slate-800/50 rounded-xl border-l-4 border-gigantic-500">
+                            <p class="text-slate-400 italic text-sm">Original:</p>
+                            <p class="text-white">"We need to sell more stuff this year so our company stays good."</p>
+                        </div>
+                        <div class="flex justify-center">
+                            <i class="fa-solid fa-arrow-down text-gigantic-500 animate-bounce"></i>
+                        </div>
+                        <div class="p-4 bg-gigantic-500/10 rounded-xl border-l-4 border-purple-500">
+                            <p class="text-gigantic-400 italic text-xs font-bold uppercase mb-1">Suggested (Professional):</p>
+                            <p class="text-white font-medium">"Our strategic focus for FY26 is aggressive market expansion to solidify our long-term fiscal stability."</p>
+                        </div>
+                        <button class="w-full py-3 bg-gigantic-600 text-white rounded-xl font-bold hover:bg-gigantic-500 transition-colors shadow-lg shadow-gigantic-600/20">Apply Transformation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2">
+                <div class="p-1.5 bg-gigantic-600 rounded-lg">
+                    <i class="fa-solid fa-brain text-white text-sm"></i>
+                </div>
+                <span class="text-xl font-black tracking-tighter text-white uppercase">GIGANTICWIT</span>
+            </div>
+            
+            <p class="text-slate-500 text-sm">© 2026 Gigantic Wit Inc. The premier technical writing environment.</p>
+            
+            <div class="flex gap-6 text-slate-400">
+                <a href="#" class="hover:text-white"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-white"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="hover:text-white"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+  
